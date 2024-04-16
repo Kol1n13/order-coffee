@@ -19,6 +19,7 @@ function func1(){
     const overlay = document.getElementById('overlay');
     overlay.style.visibility = 'hidden';
     modal.style.visibility = 'hidden';
+    coffeeForm.submit();
 }
 
 const submitButton = document.querySelector('.submit-button');

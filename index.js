@@ -1,20 +1,53 @@
 const coffeeForm = document.getElementById('coffeeForm');
 const modal = document.getElementById('modal');
 
-function displayModal() {
+function displayModal(numberOfDrinks) {
+    const overlay = document.getElementById('overlay');
+    overlay.style.visibility = 'visible';
     modal.style.visibility = 'visible';
+
+    const modalContent = document.querySelector('.modal-content');
+    modalContent.textContent = `Вы заказали ${numberOfDrinks} ${pluralizeDrinks(numberOfDrinks)}`;
+}
+
+function pluralizeDrinks(number) {
+    function pluralize(number, one, few, many) {
+        number = Math.abs(number);
+        number %= 100;
+        if (number >= 5 && number <= 20) {
+            return many;
+        }
+        number %= 10;
+        if (number === 1) {
+            return one;
+        }
+        if (number >= 2 && number <= 4) {
+            return few;
+        }
+        return many;
+    }
+
+    if (number === 1) {
+        return 'напиток';
+    } else {
+        return pluralize(number, 'напиток', 'напитка', 'напитков');
+    }
 }
 
 function submitForm() {
-    // Пусть здесь отправка данных на сервер, не хочу чтобы страница перезагружалась
 
-    displayModal();
+    const numberOfDrinks = document.querySelectorAll('.beverage').length;
+    displayModal(numberOfDrinks);
 
     return false;
 }
 
+
 function func1(){
+    const overlay = document.getElementById('overlay');
+    overlay.style.visibility = 'hidden';
     modal.style.visibility = 'hidden';
+    coffeeForm.submit();
 }
 
 

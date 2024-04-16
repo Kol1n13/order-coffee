@@ -17,8 +17,11 @@ function func1(){
     modal.style.visibility = 'hidden';
 }
 
+
 const submitButton = document.querySelector('.submit-button');
-submitButton.addEventListener('click', submitForm);
+submitButton.onclick = submitForm;
+
+
 function newForm(){
     let form = Array.from(document.querySelectorAll('.beverage')).pop();
     let new_form = exampleOrder.cloneNode(true);
@@ -31,6 +34,14 @@ function newForm(){
     }
     orderCounter++;
     form.after(new_form);
+}
+
+function destroy(btn){
+    const count = document.querySelectorAll('.beverage').length;
+    if (count > 1){
+        btn.closest('.beverage').remove();
+    }
+    return;
 }
 
 let cloneButton = document.getElementById('cloneButton');

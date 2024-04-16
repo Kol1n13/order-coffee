@@ -7,7 +7,27 @@ function displayModal(numberOfDrinks) {
     modal.style.visibility = 'visible';
 
     const modalContent = document.querySelector('.modal-content');
-    modalContent.textContent = `Вы заказали ${numberOfDrinks} ${pluralizeDrinks(numberOfDrinks)}`;
+    let drinks = document.createElement('p');
+    drinks.textContent = `Вы заказали ${numberOfDrinks} ${pluralizeDrinks(numberOfDrinks)}`;
+    modalContent.appendChild(drinks);
+    let table = document.createElement('table');
+    for (let elem of document.querySelectorAll('.beverage')){
+        let row = document.createElement('tr');
+        let fields = elem.querySelectorAll('.field');
+        let drink = document.createElement('td');
+        drink.textContent = fields[0].querySelector('select').textContent;
+        row.appendChild(drink);
+        let milk = document.createElement('td');
+        milk.textContent = fields[1].querySelector('.checkbox-field').querySelector('input').textContent;
+        row.appendChild(milk);
+        let additional = document.createElement('td');
+        additional.textContent = fields[2].querySelector('.checkbox-field').querySelector('input').textContent;
+        row.appendChild(additional);
+        table.appendChild(row);
+    }
+    modalContent.appendChild(table);
+    
+
 }
 
 function pluralizeDrinks(number) {

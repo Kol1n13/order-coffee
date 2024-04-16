@@ -2,6 +2,8 @@ const coffeeForm = document.getElementById('coffeeForm');
 const modal = document.getElementById('modal');
 
 function displayModal() {
+    const overlay = document.getElementById('overlay');
+    overlay.style.visibility = 'visible';
     modal.style.visibility = 'visible';
 }
 
@@ -14,6 +16,8 @@ function submitForm() {
 }
 
 function func1(){
+    const overlay = document.getElementById('overlay');
+    overlay.style.visibility = 'hidden';
     modal.style.visibility = 'hidden';
 }
 
